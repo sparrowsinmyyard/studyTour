@@ -131,7 +131,7 @@ body {
 .video-section {
     flex: 1.5; /* Takes up 60% of the screen */
     position: relative;
-    background-color: #294134; /* Deep Forest Moss Green */
+    background-color: #a38560; /* Deep Forest Moss Green */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -174,7 +174,7 @@ body {
     transform: translate(-50%, -50%); /* Centers the image perfectly in the box */
     
     width: 130%;
-    max-height: 120%; /* Scales it nicely so it doesn't spill out vertically */
+    max-height: 110%; /* Scales it nicely so it doesn't spill out vertically */
     object-fit: cover;
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 25%);
     mask-image: linear-gradient(to bottom, transparent 0%, black 25%);
@@ -203,6 +203,37 @@ body {
     margin-left: -250px;
 }
 
+/* --- Twin Action Button Layout Layout --- */
+.action-button-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns label and buttons cleanly on the left margin */
+    gap: 15px; /* Space between the upper label and the buttons below */
+}
+
+/* The elegant text label floating above the buttons */
+.action-label {
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: lowercase; /* Keeps it matching your nav menu aesthetics */
+    color: #593c30; /* Cozy mahogany brown */
+    letter-spacing: 1px;
+    opacity: 9.0;
+    margin-left: 5px; /* Tiny nudge to align beautifully with the button edge */
+}
+
+/* Flex layout container to align buttons side-by-side horizontally */
+.twin-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 20px; /* Cozy breathing room between Timer and Pomodoro */
+}
+
+/* Adjusting padding slightly so twin buttons don't look overly chunky next to each other */
+.start-btn {
+    padding: 20px 30px !important; /* Overrides previous single giant button padding */
+}
+
 .title {
     font-size: 7.5rem;
     font-weight: 900;
@@ -212,8 +243,8 @@ body {
 
 .subtitle {
     font-size: 2.0rem;
-    font-weight: 400;
-    color: #593c30; /* Muted Mahogany Brown */
+    font-weight: 700;
+    color: #000000; /* Muted Mahogany Brown */
     margin-bottom: 15px; /* Separation before the quote block */
 }
 
@@ -226,10 +257,14 @@ body {
 
 /* --- Right Column: Action Box --- */
 .welcome-action {
+    margin-right: -180px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex: 1;
+    background-color: rgba(190, 163, 147, 0.877);
+    border-radius: 50px;
+    padding: 30px;
 }
 
 /* --- Upgraded Start Boarding Button --- */
@@ -238,17 +273,17 @@ body {
     font-size: 2.5rem; /* Prominent, significant action size */
     font-weight: 700;
     padding: 25px 35px; /* Thick padding to stand out */
-    background-color: #503930;
-    color: #fff;
+    background-color: #88684be8;
+    color: #ffffff;
     border: none;
-    border-radius: 24px;
+    border-radius: 60px;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     gap: 12px; /* Fixed space between text and the arrow element */
     white-space: nowrap; /* Ensures button content never breaks text wraps */
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 6px 20px rgba(80, 57, 48, 0.25);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0);
 }
 
 /* --- The Growing Arrow Magic --- */
@@ -261,8 +296,8 @@ body {
 /* --- combined hover interactions --- */
 .start-btn:hover {
     transform: translateY(-4px); /* Floating lift effect */
-    box-shadow: 0 10px 25px rgb(87, 53, 40);
-    background-color: #3d261db0; /* Slightly deeper shift for contrast */
+    box-shadow: 0 10px 25px rgb(153, 152, 152);
+    background-color: #5c311db0; /* Slightly deeper shift for contrast */
 }
 
 /* arrow wrapper inside the button when the parent button is hovered */
@@ -276,20 +311,28 @@ body {
     bottom: 30px;
     right: 40px;
     font-size: 2.5rem;
-    font-weight: 900;
-    color: #3d261d;
+    font-weight: 999;
+    color: #000000;
 }
 
-/* --- Responsive Layout for iPads & Smaller Displays --- */
+/* otherdevices */
 @media (max-width: 900px) {
     .welcome-box {
-        flex-direction: column; /* Safely falls back to a gorgeous centered vertical layout */
+        flex-direction: column; 
         text-align: center;
         gap: 30px;
     }
     .welcome-text {
         align-items: center;
         text-align: center;
+        margin-left: 0; /* Clear out layout shifts on small displays */
+    }
+    .action-button-group {
+        align-items: center; /* Centers the label over stacked buttons */
+    }
+    .twin-buttons {
+        flex-direction: column; /* Safely switch buttons to vertical layout on tiny viewports */
+        gap: 15px;
     }
     .title { font-size: 3.8rem; }
     .top-nav { gap: 40px; }

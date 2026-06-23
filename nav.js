@@ -20,7 +20,7 @@ const contentData = {
 <p>I hope you enjoy using it as much as I enjoyed building it! :D</p>`
                
     },
-    'other': {
+    'how to use it': {
         title: 'studyTour',
         body: `<p>here's how to use it! (although, just get started... you'll figure it out yourself I believe in you!)</p>
                <p></p>`
