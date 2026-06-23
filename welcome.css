@@ -1,4 +1,3 @@
-/* --- Reset & Base Settings --- */
 * {
     margin: 0;
     padding: 0;
@@ -7,15 +6,15 @@
 
 body {
     font-family: "Cormorant Infant", serif;
-    height: 100vh; /* Takes up exactly 100% of the screen height */
+    height: 100vh; /* 100 pratishat */
     display: flex;
     flex-direction: column;
-    background-color: #dacfbe; /* Cozy Warm Oatmeal Cream */
-    color: #3d261d; /* Deep Burnt Walnut Brown */
-    overflow: hidden; /* Prevents ugly scrollbars on standard views */
+    background-color: #dacfbe; /* cozycore */
+    color: #3d261d; /* uhm burnt walnut */
+    overflow: hidden; /* gande scrollbar door rahein */
 }
 
-/* --- Top Transparent Navigation --- */
+/* top transparent nav  */
 .top-nav {
     position: absolute;
     top: 0;
@@ -25,20 +24,107 @@ body {
     justify-content: center;
     gap: 100px;
     padding: 30px;
-    z-index: 10; /* Keeps it above the video */
+    z-index: 10; /* video loop ke upar :D */
 }
 
 .top-nav a {
     text-decoration: none;
-    color: #ffffff; /* White text looks best over video/animations */
-    font-size: 1.5rem; /* Upgraded size to be visibly crisp */
+    color: #ffffff; /* white text looks best over video/animations */
+    font-size: 1.5rem; /* size to be visibly crispyyy */
     font-weight: 700;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6); /* Helps text pop if the video gets bright */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6); /* helps text pop if the video gets bright */
     transition: opacity 0.3s ease;
 }
 
 .top-nav a:hover {
     opacity: 0.7;
+}
+
+/* --- Liquid Glass Mega Menu Popup --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2); /* Soft dark tint over everything */
+    z-index: 100; /* Stays completely on top of all text, buttons, and clips */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Hidden by default until clicked */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+/* Add this class via JS to wake the modal up */
+.modal-overlay.is-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.6); /* Almost opaque white baseline */
+    -webkit-backdrop-filter: blur(10px);   /* Apple Liquid Glass Engine */
+    backdrop-filter: blur(10px);           /* Dissolves the green background into a soft glow */
+    
+    width: 80%;
+    height: auto;         /* Allows the card to shrink cleanly to fit small chunks of text */
+    max-height: 80%;
+    border-radius: 32px; /* Slight cozy curve radius */
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Crisp glass edge highlight */
+    padding: 60px;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    
+    /* Content Layout styling */
+    color: #3d261d;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* The Subtle Close Button inside the glass box */
+.modal-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    color: #3d261d;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.modal-close:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Interior Popup Text Styling */
+.modal-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    border-bottom: 2px solid rgba(61, 38, 29, 0.15);
+    padding-bottom: 10px;
+}
+
+.modal-body {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    font-weight: 550;
+    overflow-y: auto; /* Safely scrolls internally if text variables grow massive */
+    padding-right: 15px;
+}
+
+/* Gives breathing space between separate paragraph blocks in the popup */
+.modal-body p {
+    margin-bottom: 10px; /* 👈 Increase this number for even more space! */
 }
 
 /* --- Top Half: Video Section --- */
@@ -58,7 +144,7 @@ body {
     z-index: 2;
 }
 
-/* Smooth gradient so the video blends elegantly into the bottom section */
+/* hihihiha */
 .video-gradient-overlay {
     position: absolute;
     bottom: 0;
@@ -69,15 +155,32 @@ body {
     z-index: 5;
 }
 
-/* --- Bottom Half: Content Layout Split --- */
+/* --- bottom half: Content Layout Split --- */
 .content-section {
-    flex: 1; /* Takes up 40% of the screen */
+    flex: 1; /* takes up 40% of the screen */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 60px 40px 60px; /* Extra side breathing room for the layout stretch */
+    padding: 0 60px 40px 60px; /* exxxxxxtra side breathing room for the layout stretch */
     position: relative;
     z-index: 10;
+}
+
+/* --- Silent Content Background Artwork --- */
+.content-bg-art {
+    position: absolute;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centers the image perfectly in the box */
+    
+    width: 130%;
+    max-height: 100%; /* Scales it nicely so it doesn't spill out vertically */
+    object-fit: cover;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 25%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 25%);
+    opacity: 0.32; /*  how subtle it is here! 0.15 means 15% visible */
+    z-index: -1;   /* forces the image to sit completely BEHIND the text */
+    pointer-events: none; /* Makes the image "invisible" to mouse clicks so users can still highlight text */
 }
 
 .welcome-box {
@@ -97,24 +200,25 @@ body {
     align-items: flex-start; /* Forces elements to line up on the left margin */
     text-align: left;
     flex: 1.4; /* Gives text more horizontal scaling room than the button */
+    margin-left: -250px;
 }
 
 .title {
-    font-size: 4.5rem;
+    font-size: 7.5rem;
     font-weight: 900;
     letter-spacing: 2px;
     margin-bottom: 5px;
 }
 
 .subtitle {
-    font-size: 1.4rem;
+    font-size: 2.0rem;
     font-weight: 400;
     color: #593c30; /* Muted Mahogany Brown */
     margin-bottom: 15px; /* Separation before the quote block */
 }
 
 .quote {
-    font-size: 1.3rem;
+    font-size: 1.8rem;
     font-weight: 600;
     font-style: italic;
     opacity: 0.85;
@@ -131,13 +235,13 @@ body {
 /* --- Upgraded Start Boarding Button --- */
 .start-btn {
     font-family: inherit;
-    font-size: 1.8rem; /* Prominent, significant action size */
+    font-size: 2.5rem; /* Prominent, significant action size */
     font-weight: 700;
-    padding: 16px 45px; /* Thick padding to stand out */
+    padding: 25px 35px; /* Thick padding to stand out */
     background-color: #503930;
     color: #fff;
     border: none;
-    border-radius: 50px;
+    border-radius: 24px;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -154,24 +258,24 @@ body {
     font-weight: 400;
 }
 
-/* --- Combined Hover Interactions --- */
+/* --- combined hover interactions --- */
 .start-btn:hover {
     transform: translateY(-4px); /* Floating lift effect */
-    box-shadow: 0 10px 25px rgba(80, 57, 48, 0.4);
-    background-color: #3d261d; /* Slightly deeper shift for contrast */
+    box-shadow: 0 10px 25px rgb(87, 53, 40);
+    background-color: #3d261db0; /* Slightly deeper shift for contrast */
 }
 
-/* Target the arrow wrapper inside the button when the parent button is hovered */
+/* arrow wrapper inside the button when the parent button is hovered */
 .start-btn:hover .btn-arrow {
-    transform: translateX(10px); /* Smoothly slides outward to the right */
+    transform: translateX(10px); /* slide right */
 }
 
-/* --- Bottom Right Signature --- */
+/* --- signature --- */
 .signature {
     position: absolute;
     bottom: 30px;
     right: 40px;
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     font-weight: 900;
     color: #3d261d;
 }
