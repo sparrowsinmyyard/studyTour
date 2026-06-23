@@ -174,7 +174,7 @@ body {
     transform: translate(-50%, -50%); /* Centers the image perfectly in the box */
     
     width: 130%;
-    max-height: 100%; /* Scales it nicely so it doesn't spill out vertically */
+    max-height: 120%; /* Scales it nicely so it doesn't spill out vertically */
     object-fit: cover;
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 25%);
     mask-image: linear-gradient(to bottom, transparent 0%, black 25%);
