@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="welcome.css">
+    <link rel="stylesheet" href="timer.css">
+    <link rel="stylesheet" href="pomo.css">
 </head>
 <body>
 
@@ -42,11 +44,11 @@
                 <span class="action-label">start boarding</span>
                 
                 <div class="twin-buttons">
-                    <button class="start-btn timer-btn">
+                    <button id="timer-btn" class="start-btn timer-btn">
                         Timer <span class="btn-arrow">&rarr;</span>
                     </button>
                     
-                    <button class="start-btn pomo-btn">
+                    <button id="pomo-btn" class="start-btn pomo-btn">
                         Pomodoro <span class="btn-arrow">&rarr;</span>
                     </button>
                 </div>
@@ -70,6 +72,8 @@
             </div>
         </div>
     </div>
+    <script src="timer.js" defer></script>
     <script src="nav.js" defer></script>
+    <script src="pomo.js" defer></script>
 </body>
 </html>

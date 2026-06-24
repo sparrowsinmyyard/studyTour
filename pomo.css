@@ -1,0 +1,135 @@
+/* ==========================================
+   HEAVY GLASS POMODORO SETUP OVERLAY
+   ========================================== */
+.pomo-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(23, 15, 18, 0.4); /* Subtle warm mahogany tint */
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Heavy Blur Engine to melt the background layout entirely away */
+    -webkit-backdrop-filter: blur(60px);
+    backdrop-filter: blur(60px);
+    
+    /* Hidden by default */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Awake State */
+.pomo-modal-overlay.is-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Setup Card Frame */
+.pomo-setup-card {
+    background: rgba(255, 255, 255, 0.4); 
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 40px;
+    padding: 60px;
+    width: 95%;
+    max-width: 750px; /* Marginally wider to hold the three structured columns cleanly */
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    text-align: center;
+    position: relative;
+}
+
+/* Close Button Cross */
+.pomo-modal-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    color: #3d261d;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.2s ease;
+}
+.pomo-modal-close:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.pomo-setup-title {
+    font-family: "Cormorant Infant", serif;
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: #3d261d;
+}
+
+/* --- The Physical Control Deck Columns --- */
+.pomo-picker-deck {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 30px; /* Spacious breathing space between different blocks */
+}
+
+.pomo-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Control Arrows */
+.pomo-arrow {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #3d261d;
+    cursor: pointer;
+    opacity: 0.6;
+    user-select: none;
+    transition: all 0.2s ease;
+}
+.pomo-arrow:hover {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+/* Input Fields Box Styling */
+.pomo-column input {
+    font-family: "Cormorant Infant", serif;
+    font-size: 4.5rem;
+    font-weight: 700;
+    width: 120px; /* Slightly wider layout block for better finger breathing room */
+    height: 90px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(61, 38, 29, 0.2);
+    border-radius: 20px;
+    color: #3d261d;
+    outline: none;
+}
+/* Hide native spinner elements */
+.pomo-column input::-webkit-outer-spin-button,
+.pomo-column input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.pomo-label {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #593c30;
+    opacity: 0.85;
+    margin-top: 5px;
+    white-space: nowrap; /* Keeps names like "short break" on single text tracks */
+}

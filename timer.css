@@ -1,0 +1,139 @@
+/* ==========================================
+   HEAVY GLASS TIMER SETUP OVERLAY
+   ========================================== */
+.timer-modal-overlay {
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(15, 23, 18, 0.4); /* Deep forest tint */
+    z-index: 200; /* Sits completely on top of the welcome page & mega-modal */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Heavy Blur Engine to melt the background completely away */
+    -webkit-backdrop-filter: blur(60px);
+    backdrop-filter: blur(60px);
+    
+    /* Hidden by default */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Awake State */
+.timer-modal-overlay.is-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* The Setup Deck Card */
+.timer-setup-card {
+    background: rgba(255, 255, 255, 0.4); /* Ultra-transparent glass */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 40px;
+    padding: 60px;
+    width: 90%;
+    max-width: 650px;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    text-align: center;
+    position: relative;
+}
+
+/* Close Button Cross */
+.timer-modal-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    color: #3d261d;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.2s ease;
+}
+.timer-modal-close:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.timer-setup-title {
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: #3d261d;
+}
+
+/* --- The Physical Control Deck Columns --- */
+.time-picker-deck {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.picker-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Control Arrows */
+.picker-arrow {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #3d261d;
+    cursor: pointer;
+    opacity: 0.6;
+    user-select: none;
+    transition: all 0.2s ease;
+}
+.picker-arrow:hover {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+/* Input Fields Box Styling */
+.picker-column input {
+    font-family: "Cormorant Infant", serif;
+    font-size: 4.5rem;
+    font-weight: 700;
+    width: 100px;
+    height: 90px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(61, 38, 29, 0.2);
+    border-radius: 20px;
+    color: #3d261d;
+    outline: none;
+}
+/* Hide default browser spinner arrows inside input fields */
+.picker-column input::-webkit-outer-spin-button,
+.picker-column input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.picker-label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #593c30;
+    opacity: 0.8;
+}
+
+/* Digital Colon Separator `:` */
+.time-separator {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #3d261d;
+    margin-top: -30px; /* Aligns visually with inputs */
+}
