@@ -101,11 +101,15 @@ window.validatePomoInput = function(inputElement) {
     inputElement.value = String(val).padStart(2, '0');
 };
 
-// 🎫 THE SUBMIT ACTION: Log internal cycle loop engine metrics and lock state
+// remenbers the info and stuff like train blah blah
 pomoSubmitBtn.addEventListener('click', () => {
     savedWorkDuration = parseInt(document.getElementById('pomo-work').value) || 25;
     savedBreakDuration = parseInt(document.getElementById('pomo-break').value) || 5;
     savedCyclesCount = parseInt(document.getElementById('pomo-cycles').value) || 4;
+
+    localStorage.setItem('pomo_work', savedWorkDuration);
+    localStorage.setItem('pomo_break', savedBreakDuration);
+    localStorage.setItem('pomo_cycles', savedCyclesCount);
     
     console.log(`🚂 Pomodoro Sequence Locked in memory! -> Work: ${savedWorkDuration}m | Break: ${savedBreakDuration}m | Cycles: ${savedCyclesCount}`);
     alert(`Pomodoro Pattern Saved:\n${savedWorkDuration} mins Work ➔ ${savedBreakDuration} mins Break\nRepeating for ${savedCyclesCount} Cycles!`);

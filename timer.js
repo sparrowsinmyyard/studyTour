@@ -102,6 +102,10 @@ stationsSubmitBtn.addEventListener('click', () => {
     savedHours = parseInt(document.getElementById('input-hrs').value) || 0;
     savedMinutes = parseInt(document.getElementById('input-mins').value) || 0;
     savedSeconds = parseInt(document.getElementById('input-secs').value) || 0;
+
+    localStorage.setItem('timer_hours', savedHours);
+    localStorage.setItem('timer_minutes', savedMinutes);
+    localStorage.setItem('timer_seconds', savedSeconds);
     
     console.log(`🚂 Ticket Time Lock Confirmed! saved in JS memory core -> ${savedHours}:${savedMinutes}:${savedSeconds}`);
     alert(`Time Saved: ${String(savedHours).padStart(2,'0')}:${String(savedMinutes).padStart(2,'0')}:${String(savedSeconds).padStart(2,'0')}!\nReady to build the Station Selector next!`);
