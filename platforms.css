@@ -66,3 +66,234 @@
     transform: translateY(-2px);
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
+
+/* ==========================================
+   🎬 CLEAR & WORKING CEREMONY SYSTEM
+   ========================================== */
+.ceremony-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    pointer-events: auto;
+    
+    /* Starting point: Purely invisible */
+    background-color: rgba(0, 0, 0, 0) !important; 
+    backdrop-filter: blur(0px) !important;
+    -webkit-backdrop-filter: blur(0px) !important;
+    
+    user-select: none;
+    -webkit-user-select: none;
+    
+    /* High performance, smooth timing drive */
+    transition: background-color 2.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                backdrop-filter 2.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+/* Moving state: Smoothly fades into deep blur and full black */
+.ceremony-backdrop.is-curtain-up {
+    background-color: rgba(0, 0, 0, 1) !important; 
+    backdrop-filter: blur(40px) !important;        
+    -webkit-backdrop-filter: blur(40px) !important;
+}
+
+/* Master Fixed Size Proportional Container Wrapper Box */
+.ticket-master-wrapper {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 1360px;
+    height: 612px;
+    transform: translate(-50%, 120%); /* Hidden beneath lower viewport screen bounds */
+    transition: transform 3s cubic-bezier(0.175, 0.885, 0.32, 1.1); /* Elastic ascension physics */
+}
+
+.ticket-master-wrapper.is-floated-in {
+    transform: translate(-50%, -50%); /* Locks exactly into center screen positions */
+}
+
+/* Layer Alignment Canvas Mechanics */
+.ticket-view-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.ticket-canvas-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.video-hidden {
+    display: none !important;
+}
+
+/* Smooth layer fade transitions */
+.layer-fade-out {
+    opacity: 0;
+    transition: opacity 0.15s ease-out;
+    
+}
+
+/* ==========================================
+   THE PRINT ENGINE (ABSOLUTE COORDINATE GRID)
+   ========================================== */
+.print-field {
+    position: absolute;
+    font-family: "Courier New", Courier, monospace; /* Clean vintage typewriter monospace font */
+    font-weight: 800;
+    color: #3d261d;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    user-select: none;
+}
+
+/* Ribbon Accent Text Lines (Cream colored tags on dark horizontal bar) */
+.ribbon-pnr   { top: 180px; left: 725px; color: #fdfaf2; font-size: 1.1rem; }
+.ribbon-train { top: 150px; left: 230px; color: #fdfaf2; font-size: 1.1rem; letter-spacing: 1px; }
+.ribbon-date  { top: 150px; left: 725px; color: #fdfaf2; font-size: 1.1rem; }
+.ribbon-class { top: 180px; left: 230px; color: #fdfaf2; font-size: 1.1rem; }
+
+/* Main Canvas Body Block Rows (Deep charcoal colored logs) */
+.body-from     { top: 280px; left: 230px; font-size: 1.8rem; letter-spacing: 1px; }
+.body-to       { top: 330px; left: 230px; font-size: 1.8rem; letter-spacing: 1px; }
+.body-distance { top: 330px; left: 780px; font-size: 1.6rem; font-weight: 900; }
+
+/* Footer Financial & Stamp Coordinates */
+.footer-fare  { bottom: 180px; left: 230px; font-size: 1.1rem; font-weight: 900; letter-spacing: 0.5px; }
+.footer-stamp { bottom: 150px; left: 230px; font-size: 0.95rem; opacity: 0.8; font-weight: 700; }
+
+
+/* --- The Tear-Off Stub Rows (Right side duplication logs) --- */
+.stub-pnr   { top: 310px; left: 102px; font-size: 1.05rem; transform: rotate(-1deg); }
+.stub-route { top: 260px; left: 102px; font-size: 1.3rem; letter-spacing: 1px; }
+.stub-class { top: 340px; left: 102px; font-size: 1.2rem; font-weight: 900; }
+
+.ticket-qr-code {
+    top: 370px;           
+    left: 102px;          
+    width: 100px;          
+    height: 100px;          
+    opacity: 1;         
+}
+
+/* 📊 Vintage Barcode Generation Field Wrapper */
+.ticket-barcode-field {
+    bottom: 150px;
+    left: 52px;
+    font-family: "Libre Barcode 39", "Barcode Font", "Courier New", monospace; /* Automatically triggers scannable bars if fonts link */
+    font-size: 1.7rem;
+    font-weight: 400;
+    color: #3d261d;
+    opacity: 0.85;
+    letter-spacing: 2px;
+    writing-mode: vertical-rl; 
+        transform: rotate(180deg); 
+
+}
+
+/* ==========================================
+   PERFORATION GLASS TRACKER DECK INTERACTION
+   ========================================== */
+.cut-guide-wire {
+    position: absolute;
+    top: 128px;
+    left: 908px; /* Coordinates perfectly map directly down your ticket's dotted ring fold line */
+    width: 26px;
+    height: 60%;
+    cursor: pointer;
+    z-index: 10000;
+    background: radial-gradient(circle, rgba(255, 235, 165, 0.4) 0%, rgba(255,255,255,0) 70%);
+    box-shadow: 0 0 20px rgba(255, 210, 100, 0.4), inset 0 0 10px rgba(255, 210, 100, 0.3);
+    animation: pulsePerforationGlow 2s infinite ease-in-out;
+    border-radius: 12px;
+}
+
+
+
+/* Turn off instructions once selection drag events begin */
+.glow-extinguished {
+    animation: none !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+
+@keyframes pulsePerforationGlow {
+    0% { opacity: 0.3; box-shadow: 0 0 15px rgba(255, 210, 100, 0.2); }
+    50% { opacity: 1; box-shadow: 0 0 30px rgba(255, 210, 100, 0.65), 0 0 10px rgba(255, 210, 100, 0.3); }
+    100% { opacity: 0.3; box-shadow: 0 0 15px rgba(255, 210, 100, 0.2); }
+}
+
+/* ==========================================
+   CINEMATIC FINALE PITCH BLACK FADE OUT
+   ========================================== */
+.ceremony-backdrop.is-cinematic-dimming {
+    background-color: rgb(0, 0, 0) !important;
+    backdrop-filter: blur(80px) !important;
+    -webkit-backdrop-filter: blur(80px) !important;
+    transition: background-color 1.5s ease-in-out, backdrop-filter 1.5s ease-in-out;
+}
+
+/* ==========================================
+   🎬 PERMANENT VIDEO ALIGNMENT DIALS
+   ========================================== */
+#transition-video-player {
+    position: absolute;     /* 📍 Frees it up so top and left normal knobs work */
+    object-fit: fill;       /* Forces video contents to fit your custom pixel dimensions */
+
+    /* 🎛️ ALIGNMENT COORDINATES */
+    top: -160px;               
+    left: -130px;              
+    width: 1705px;          
+    height: 970px;          
+}
+
+/* ==========================================
+   🎭 TEXT OVERLAY & CINEMATIC ANIMATIONS
+   ========================================== */
+#ticket-text-overlay {
+    z-index: 10005; /* Renders on top of the video layer */
+    pointer-events: none; /* Allows clicks to pass through if needed */
+}
+
+/* Localized container for the stub elements */
+#stub-ticket-text {
+    position: absolute;
+    top: 0;
+    left: 908px; /* Starts exactly at the perforation fold line */
+    width: 452px; /* 1360px - 908px = 452px */
+    height: 100%;
+    transform-origin: center center; /* Rotates around the center of the stub itself */
+}
+
+/* Instantly kill stub text the moment the tear fires */
+#ticket-text-overlay.is-animating #stub-ticket-text {
+    display: none !important;
+}
+
+
+/* Stub tear, flight, rotation, and drop trajectory (Fades out at the peak!) */
+@keyframes stubFlight {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 1;
+    }
+    15% {
+        /* Initial tear and rise, starting to fade */
+        transform: translate(30px, -210px) rotate(4deg);
+  display: none !important;    }
+    65% {
+        /* Reaches peak height and is now completely invisible */
+        transform: translate(80px, -200px) rotate(11deg);
+        opacity: 0;
+    }
+
+}
+
+
