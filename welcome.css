@@ -273,7 +273,7 @@ body {
     font-size: 2.5rem; /* Prominent, significant action size */
     font-weight: 700;
     padding: 25px 35px; /* Thick padding to stand out */
-    background-color: #88684be8;
+    background-color: #ac835ee8;
     color: #ffffff;
     border: none;
     border-radius: 60px;
@@ -296,8 +296,8 @@ body {
 /* --- combined hover interactions --- */
 .start-btn:hover {
     transform: translateY(-4px); /* Floating lift effect */
-    box-shadow: 0 10px 25px rgb(153, 152, 152);
-    background-color: #5c311db0; /* Slightly deeper shift for contrast */
+    
+    background-color: #ad765ab0; /* Slightly deeper shift for contrast */
 }
 
 /* arrow wrapper inside the button when the parent button is hovered */
