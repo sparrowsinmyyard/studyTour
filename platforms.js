@@ -37,7 +37,7 @@ const STATION_DATA = {
         arrivals: [
             { id: "kathgodam", name: "Kathgodam Station", img: "linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1601821139990-9fc929db79ce?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" },
             { id: "shimla", name: "Shimla Toy Train", img: "linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1657894736581-ccc35d62d9e2?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" },
-            { id: "hubbali", name: "Hubbali Station", img: "linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('hhttps://images.unsplash.com/photo-1620766182966-c6eb5ed2b788?q=80&w=448&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }
+            { id: "hubbali", name: "Hubbali Station", img: "linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1620766182966-c6eb5ed2b788?q=80&w=448&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }
         ]
     }
 };
@@ -104,17 +104,17 @@ window.updateStationImage = function(type) {
     }
 };
 
-// 🎯 FIXED STORAGE COMMIT & ALERT SYSTEM
+// specific function inside .. alert?
 window.generateFinalTicket = function() {
     const departureStation = document.getElementById('dep-select').value;
     const arrivalStation = document.getElementById('arr-select').value;
 
-    // Save to browser application hard drive storage permanently
+    // Permanent application log storage commit calls
     localStorage.setItem('departure_platform', departureStation);
     localStorage.setItem('arrival_platform', arrivalStation);
 
-    console.log(`🎟️ Stations locked in LocalStorage -> Departure: ${departureStation} | Arrival: ${arrivalStation}`);
+    console.log(`🎟️ Core logs committed. Launching Ceremony Sequence...`);
     
-    // Fire the confirmation alert!
-    alert(`🎫 Ticket Generated Successfully!\nDeparture Station: ${departureStation.toUpperCase()}\nArrival Station: ${arrivalStation.toUpperCase()}\n\nNext view: The boarding pass dashboard is ready to compile!`);
+    // 🔥 Fire the new cinematic ticket presentation system!
+    startTicketCeremony();
 };
