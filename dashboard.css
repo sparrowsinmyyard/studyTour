@@ -1,0 +1,258 @@
+/* ==========================================================================
+   🚂 THE DYNAMIC CANVA-GRID SYSTEM
+   ========================================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color:   #818b63; /* Warm mahogany dark theme */
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 🎨 YOUR CANVA CANVAS CONTROL CENTER */
+.canva-canvas {
+    display: grid;
+    width: 96vw;
+    height: 94vh;
+    gap: 16px; /* Spacing between cards */
+    
+    /* 📐 1. DIAL IN COLUMNS & ROWS DIMENSIONS HERE */
+    grid-template-columns: 1.2fr 1fr; /* Two massive columns side by side */
+    grid-template-rows: 1fr 1fr;      /* Two massive rows stacked */
+
+    /* 🗺️ 2. THE CANVA BLUEPRINT MAP:
+       To rearrange boxes instantly, just swap these words around! 
+       Current Setup matches your cozy reference layout. */
+    grid-template-areas: 
+        "cabin audio"
+        "cabin map"
+        "metrics map" !important; /* Adding an extra virtual row tier for metrics layout */
+        
+    /* Let's redefine rows slightly to handle the 3-tier mapping stack perfectly */
+    grid-template-rows: 1.2fr 0.8fr 1fr;
+}
+
+/* ==========================================================================
+   📦 LINKING CARDS TO THE THE CANVA MAP KEYS
+   ========================================================================== */
+.card-cabin   { grid-area: cabin; }
+.card-audio   { grid-area: audio; }
+.card-map     { grid-area: map; }
+.card-metrics { grid-area: metrics; }
+
+/* ==========================================================================
+   💎 UNIVERSAL HIGH-END COMPONENT GLASSWARE
+   ========================================================================== */
+.dashboard-card {
+    border: 1px dashed rgba(255, 255, 255, 0.15); /* Diagnostic Canva border lines */
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.01);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.dashboard-card:hover {
+    border-color: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.block-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+/* ==========================================================================
+   🖼️ CARD A: INSIDE VIEW FRAME ENGINE TUNING
+   ========================================================================== */
+.card-cabin {
+    background: #000;
+    padding: 0; /* Clear padding so container frames the graphic art tightly */
+}
+
+.cabin-foreground-layer {
+    position: absolute;
+    top: -19px;
+    left: 0;
+    width: 100%;
+    height: 109%;
+    object-fit: cover; /* Locks proportions perfectly without clipping out detail */
+    z-index: 2;
+    pointer-events: none;
+}
+
+.cabin-window-cutout {
+    position: absolute;
+    /* 🎛️ Slide these around to place the scenery precisely into your artwork window cutout */
+    top: 25.5%;       
+    left: 17%;      
+    width: 66%;     
+    height: 40.5%;    
+    z-index: 1;
+    overflow: hidden;
+    background-color: #050508;
+}
+
+.cabin-window-cutout video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/*  dashboard.css */
+
+.canva-canvas {
+    display: grid;
+    width: 96vw;
+    height: 94vh;
+    gap: 16px;
+    grid-template-columns: 1.2fr 1fr;
+    grid-template-areas: 
+        "cabin audio"
+        "cabin map"
+        "metrics map" !important;
+    grid-template-rows: 1.2fr 0.8fr 1fr;
+    background-color: #818b63;
+
+    /* ⚡ THE SMOOTH REVEAL DIALS */
+    transition: filter 1s ease-in-out, opacity 2.0s ease-in-out;
+    
+    /*  THE TARGET END-STATE: Once the transition is done, we want it perfectly sharp and visible! */
+    filter: blur(0px);
+    opacity: 1;
+}
+
+/* THE STARTING STATE: When the page paints, it clamps on these hidden parameters */
+.canva-canvas.grid-shroud-active {
+    /*  CHANGE THIS: Make the initial state heavily blinded by fog */
+    filter: blur(35px); 
+    opacity: 0;
+}
+
+/* ==========================================================================
+   TACKLE 2: THE GLASSMORPHIC DECK MASK (TWEAKABLE DESIGN KNOBS ON TOP)
+   ========================================================================== */
+
+#all-aboard-mask {
+    /* ---  EDITABLE DESIGN KNOBS (CLUSTER) --- */
+    --mask-blur: 25px;                       /* Fog thickness behind the glass */
+    --mask-bg: #3f6146;    /* Tint color and opacity */
+    --mask-border: rgba(255, 255, 255, 0.1);  /* Edge highlights */
+    --drop-speed: 1.2s;                       /* Speed of slide-down animation */
+    
+    /* ---  GRID MATRIX COORDINATES (CANVA POSITION) --- */
+    grid-column: 2 / 3;                      /* Spans completely across your right-hand column */
+    grid-row: 1 / 4;                         /* Covers your top card down to the map grid floor */
+    
+    /* --- CORE FUNCTIONAL STYLING --- */
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    background: var(--mask-bg);
+    backdrop-filter: blur(var(--mask-blur)) saturate(140%);
+    -webkit-backdrop-filter: blur(var(--mask-blur)) saturate(140%);
+    border: 1px solid var(--mask-border);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+    
+    /* Animation Execution Parameters */
+    transition: transform var(--drop-speed) cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+    transform: translateY(0);
+}
+
+/*  Drop Execution Trigger State */
+#all-aboard-mask.mask-dropped {
+    transform: translateY(110vh); /* Discharges block down past viewport boundary */
+    opacity: 0;
+    pointer-events: none;         /* Retracts physical click blockages completely */
+}
+
+/* BUTTON PARAMETERS */
+.all-aboard-button {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 16px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.all-aboard-button:hover {
+    background: #ffffff;
+    color: #120b0d;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   TACKLE 3: THE CABIN WINDOW SHUTTER MECHANISM
+   ========================================================================== */
+#window-shutter {
+    /*  SHUTTER DESIGN KNOBS (CLUSTER) --- */
+    --shutter-color: #30282b;                /* Textured wood/metallic shutter color */
+    --lift-speed: 2.0s;                      /* How long it takes for the shutter to roll up */
+    
+    /* --- CORE POSITIONING --- */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--shutter-color);
+    background-image: linear-gradient(rgba(0,0,0,0.15) 50%, transparent 50%);
+    background-size: 100% 12px;              /* Creates realistic shutter panel lines */
+    
+    z-index: 2;                              /* Higher than video (z-index: 1), below cabin cutout */
+    
+    /* Animation Parameter Clamps */
+    transition: transform var(--lift-speed) cubic-bezier(0.45, 0, 0.55, 1);
+    transform: translateY(0);                /* Born closed, completely hiding the video */
+}
+
+/*  The Lift Execution State */
+#window-shutter.shutter-lifted {
+    transform: translateY(-100%);            /* Rolls smoothly upwards out of the window frame */
+}
+
+/* ==========================================================================
+    TACKLE 4: FINISHED JOURNEY HALO GLOW
+   ========================================================================== */
+.metrics-halo-active {
+    /* Clamps a beautiful glowing border onto the card */
+    border: 2px solid rgba(255, 255, 255, 0.8) !important;
+    animation: halo-pulse 2s infinite ease-in-out;
+}
+
+@keyframes halo-pulse {
+    0% {
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 35px rgba(255, 255, 255, 0.7), inset 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+}
+
