@@ -256,3 +256,7 @@ body {
     }
 }
 
+.leaflet-tile-container img {
+    width: 260.5px !important;
+    height: 260.5px !important;
+}

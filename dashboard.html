@@ -3,32 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>studyTour | Dashboard (Placeholder)</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            background-color: #dacfbe;
-            color: #3d261d;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
-        }
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-        p {
-            font-size: 1.5rem;
-            opacity: 0.8;
-        }
-    </style>
+    <title>studyTour | Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
-    <h1>Welcome Aboard! 🚂</h1>
-    <p>This is your studyTour journey dashboard. (Ready for step 5!)</p>
+
+<main id="dashboard-reveal-grid" class="canva-canvas grid-shroud-active">
+            
+        <section class="dashboard-card card-cabin">
+            <div class="cabin-window-cutout">
+                <video id="scenery-loop" src="trainscenery.mp4" autoplay loop muted playsinline></video>
+                <div id="window-shutter"></div>
+            </div>
+            <img class="cabin-foreground-layer" src="cabinview.png" alt="Train Cabin View Overlay">
+        </section>
+
+        <section class="dashboard-card card-audio">
+            <header class="block-label">Journey Metrics</header>
+        </section>
+
+        <section class="dashboard-card card-map">
+            <header class="block-label">Route Progress Map</header>
+                <div id="route-map" style="position:absolute; inset: 45px 20px 20px 20px; border-radius: 12px; overflow:hidden;"></div>
+
+        </section>
+
+        <section class="dashboard-card card-metrics">
+            <header class="block-label">Audio Master Tray</header>
+        </section>
+<div id="all-aboard-mask" class="glass-mask-deck">
+            <button id="all-aboard-btn" class="all-aboard-button">All Aboard 🚂</button>
+        </div>
+    </main>
+<script src="dashboard.js"></script>
 </body>
 </html>
