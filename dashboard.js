@@ -268,6 +268,7 @@ function hideBreakOverlay() {
         // F. Runs the ticking clock for whichever phase is currently active.
         function runPhase() {
             phaseSeconds = 0;
+            const phaseStartTimestamp = Date.now(); // same self-correcting anchor, per-phase
             const targetSeconds = (phase === 'work' ? workMinutes : breakMinutes) * 60;
 
             if (clockFace)    clockFace.style.color = (phase === 'work') ? '#ffffff' : '#170f12';
@@ -275,12 +276,13 @@ function hideBreakOverlay() {
             if (sessionLabel) sessionLabel.innerText = `Session ${currentCycle} / ${totalCycles}`;
 
             phaseInterval = setInterval(() => {
-                phaseSeconds++;
+                phaseSeconds = Math.floor((Date.now() - phaseStartTimestamp) / 1000);
+
          if (clockFace) clockFace.innerText = formatTime(phaseSeconds);
                 if (phase === 'break' && breakClockEl) breakClockEl.innerText = formatTime(phaseSeconds);
-                if (phase === 'work' && phaseSeconds % 10 === 0) {
-                    totalDistanceKM++;
-                    if (distanceCounter) distanceCounter.innerText = `Distance: ${totalDistanceKM} KM`;
+                if (phase === 'work' && distanceCounter) {
+                    const km = (typeof window.routeDistanceKM === 'number') ? window.routeDistanceKM : 0;
+                    distanceCounter.innerText = `Distance: ${km.toFixed(1)} KM`;
                 }
 
                 if (phaseSeconds >= targetSeconds) {
@@ -399,10 +401,13 @@ function advancePhase() {
 
         let totalSeconds = 0;
         let currentDistanceKM = 0;
+        const sessionStartTimestamp = Date.now(); // anchor for self-correcting time
 
-        // Main Ticking Clock Loop
         clockInterval = setInterval(() => {
-            totalSeconds++;
+            // Recomputed from real elapsed time every tick, instead of trusting
+            // the interval to have fired exactly once per second — self-corrects
+            // even if ticks were throttled/delayed while the tab was backgrounded.
+            totalSeconds = Math.floor((Date.now() - sessionStartTimestamp) / 1000);
             
             // Math converters for structural formatting
             let hrs = Math.floor(totalSeconds / 3600);
@@ -414,11 +419,11 @@ function advancePhase() {
             const clockFace = document.getElementById('journey-clock-face');
             if (clockFace) clockFace.innerText = timeString;
 
-            // Distance Accumulation Tracking (Updates every 10 seconds for testing)
-            if (totalSeconds % 10 === 0) {
-                currentDistanceKM++;
-                const distanceCounter = document.getElementById('journey-distance-counter');
-                if (distanceCounter) distanceCounter.innerText = `Distance: ${currentDistanceKM} KM`;
+            // Distance now reflects the REAL route distance covered so far.
+            const distanceCounter = document.getElementById('journey-distance-counter');
+            if (distanceCounter) {
+                const km = (typeof window.routeDistanceKM === 'number') ? window.routeDistanceKM : 0;
+                distanceCounter.innerText = `Distance: ${km.toFixed(1)} KM`;
             }
 
             /* ==========================================================================
@@ -518,6 +523,15 @@ function initializeRouteMap() {
     const routeKey = `${departureId}->${arrivalId}`;
     const midPoints = ROUTE_WAYPOINTS[routeKey] || [];
     const fullPath = [start, ...midPoints, end];
+    // One-time calculation of the ACTUAL real-world route distance, in km —
+    // this is what Journey Metrics' distance counter reads from now on,
+    // instead of a made-up "1km per 10s" placeholder.
+    let totalRouteKm = 0;
+    for (let i = 0; i < fullPath.length - 1; i++) {
+        const a = L.latLng(fullPath[i][0], fullPath[i][1]);
+        const b = L.latLng(fullPath[i + 1][0], fullPath[i + 1][1]);
+        totalRouteKm += a.distanceTo(b) / 1000; // distanceTo() returns meters
+    }
 
 routeMap = L.map('route-map', { zoomControl: true, attributionControl: false, dragging: false, scrollWheelZoom: false });
 
@@ -597,6 +611,9 @@ function animateArrow() {
         const fraction = Math.min(1, workElapsedMs / totalMs);
         const currentPos = pointAlongPath(fraction);
         routeMarker.setLatLng(currentPos);
+
+        window.routeDistanceKM = fraction * totalRouteKm; // real distance covered so far
+
 
         if (!animateArrow.lastPan || now - animateArrow.lastPan > 160) {
             routeMap.panTo(currentPos, { animate: true, duration: 0.16, easeLinearity: 1 });
