@@ -7,6 +7,9 @@
    because `transform` would break every `position: fixed` element across
    the whole site (shutter, overlays, mole tab, hamburger panel, etc).
    ========================================================================== */
-html {
-    zoom: 75%; /* KNOB: tweak this single number if it's not quite right */
+.zoom-wrapper {
+    width: 133.333%;
+    height: 133.333%;
+    transform: scale(0.75);
+    transform-origin: top left;
 }
