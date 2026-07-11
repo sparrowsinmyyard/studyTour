@@ -1,0 +1,124 @@
+/* ==========================================================================
+   🎟️ ARRIVAL MANIFEST — softened, larger version of the reference mockup
+   Deliberately lighter/warmer than the dashboard's dark cabin theme —
+   meant to feel like stepping out into daylight after the journey.
+   ========================================================================== */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: #b9ae97; /* soft cream, not stark white */
+}
+
+.arrival-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+
+    /* Fades in on load — see arrival.js */
+    opacity: 0;
+    transition: opacity 900ms ease;
+}
+
+.arrival-page.mf-visible {
+    opacity: 1;
+}
+
+.manifest-card {
+    background: #dfceb2;
+    border-radius: 22px;
+    padding: 44px 48px;
+    width: min(560px, 92vw);
+    box-shadow: 0 20px 60px rgba(74, 59, 50, 0.12);
+}
+
+.manifest-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.manifest-header h1 {
+    font-family: "Cormorant Infant", serif;
+    font-weight: 700;
+    font-size: 3.1rem;          /* KNOB: header size */
+    color: #4a3b32;             /* warm dark brown, not black */
+}
+
+.manifest-subtitle {
+    font-size: 1.2rem;          /* KNOB: subtitle size */
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.45);
+    margin-top: 1px;
+}
+
+.manifest-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 12px 0;            /* KNOB: row vertical spacing */
+}
+
+.manifest-label {
+    font-size: 0.9rem;         /* KNOB: label size */
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgb(74, 59, 50);
+}
+
+.manifest-value {
+    font-size: 1.15rem;         /* KNOB: value size */
+    font-weight: 600;
+    color: #4a3b32;
+    text-align: right;
+}
+
+.manifest-divider {
+    border-top: 1px dashed rgba(74, 59, 50, 0.25);
+    margin: 20px 0 26px;
+}
+
+.manifest-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.mf-close-btn {
+    width: 52px;                /* KNOB: close button size */
+    height: 52px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(74, 59, 50, 0.08);
+    color: #4a3b32;
+    font-size: 1.2rem;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s ease;
+}
+.mf-close-btn:hover { background: rgba(74, 59, 50, 0.15); }
+
+.mf-save-btn {
+    flex: 1;
+    height: 52px;
+    border-radius: 26px;
+    border: none;
+    background: #8a6a5b;        /* softened warm maroon, not near-black */
+    color: #fffaf2;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.2s ease;
+}
+.mf-save-btn:hover { background: #7a5b4d; transform: scale(1.02); }
+.mf-save-btn.mf-saved {
+    background: #6f8a6b;        /* soft muted green, "saved" confirmation */
+    cursor: default;
+    transform: none;
+}

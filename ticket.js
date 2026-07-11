@@ -1,6 +1,16 @@
 /* ==========================================
    VIEW 4: THE FINAL TICKET CEREMONY SYSTEM
    ========================================== */
+// Wipes out everything from previous visits the second this page loads
+// Preserve permanent saved-journey history across the blanket reset —
+// this clear() is meant for session SETUP data (stations, timer/pomo
+// choices), not the user's saved journey record.
+
+const _preserveSavedJourneys = localStorage.getItem('savedJourneys');
+localStorage.clear();
+if (_preserveSavedJourneys !== null) {
+    localStorage.setItem('savedJourneys', _preserveSavedJourneys);
+}
 
 // 1. Comprehensive Database of Station Codes, Distances, and Train Metadata
 const CEREMONY_TRAIN_DATABASE = {
@@ -280,7 +290,7 @@ if (window.location.search.includes('dev')) {
                 }
                 
                 // Kill stub text instantly
-                if (stubText) stubText.style.display = 'none';
+               /* if (stubText) stubText.style.display = 'none';*/
                 
                 // Replay video in a loop
                 videoPlayer.addEventListener('ended', () => {

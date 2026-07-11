@@ -77,6 +77,7 @@
     let activeKeys = [...DEFAULT_ACTIVE]; // main tray's active list
     let soundboardStarted = false;
     let wasOnBreak = false;
+    let arrivalTriggered = false;
     let volumeMemory = {};           // snapshot of every sound's volume, taken right before a break starts
 
     // === BUILD AUDIO ELEMENTS ===
@@ -100,6 +101,33 @@
             activeKeys.forEach(key => audioElements[key].play().catch(() => {}));
         });
     }
+
+function watchArrivalState() {
+        setInterval(() => {
+            if (arrivalTriggered || !window.journeyComplete) return;
+            arrivalTriggered = true;
+
+            const fadeSteps = 20, fadeIntervalMs = 75; // ~1.5s total fade
+            let step = 0;
+            const startVolumes = {};
+            Object.keys(audioElements).forEach(key => { startVolumes[key] = audioElements[key].volume; });
+
+            const fade = setInterval(() => {
+                step++;
+                const ratio = 1 - (step / fadeSteps);
+                Object.keys(audioElements).forEach(key => {
+                    if (!audioElements[key].paused) {
+                        audioElements[key].volume = Math.max(0, startVolumes[key] * ratio);
+                    }
+                });
+                if (step >= fadeSteps) {
+                    clearInterval(fade);
+                    Object.keys(audioElements).forEach(key => audioElements[key].pause());
+                }
+            }, fadeIntervalMs);
+        }, 200);
+    }
+
 
     // === HOOK: break transitions — coordinates BOTH trays in one place,
     // so there's never a race between "main pausing" and "break starting" ===
@@ -354,5 +382,6 @@
         buildMoleTray();
         hookIgnition();
         watchBreakState();
+        watchArrivalState();
     });
 })();

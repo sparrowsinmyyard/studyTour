@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>studyTour | Arrival</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="arrival.css">
+</head>
+<body>
+
+    <div id="arrival-page" class="arrival-page">
+        <div class="manifest-card">
+            <header class="manifest-header">
+                <h1>Arrival Ticket</h1>
+                <p class="manifest-subtitle">Journey Summary</p>
+            </header>
+
+            <div class="manifest-row">
+                <span class="manifest-label">Date</span>
+                <span class="manifest-value" id="mf-date">—</span>
+            </div>
+            <div class="manifest-row">
+                <span class="manifest-label">Time Elapsed</span>
+                <span class="manifest-value" id="mf-time">—</span>
+            </div>
+            <div class="manifest-row">
+                <span class="manifest-label">Distance</span>
+                <span class="manifest-value" id="mf-distance">—</span>
+            </div>
+            <div class="manifest-row">
+                <span class="manifest-label">Travel Mode</span>
+                <span class="manifest-value" id="mf-mode">—</span>
+            </div>
+            <div class="manifest-row">
+                <span class="manifest-label">Route Taken</span>
+                <span class="manifest-value" id="mf-route">—</span>
+            </div>
+
+            <div class="manifest-divider"></div>
+
+            <div class="manifest-actions">
+                <button id="mf-close-btn" class="mf-close-btn" aria-label="Close without saving">✕</button>
+                <button id="mf-save-btn" class="mf-save-btn">Save Journey</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="arrival.js"></script>
+</body>
+</html>

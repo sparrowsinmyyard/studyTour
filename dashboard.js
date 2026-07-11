@@ -247,7 +247,7 @@ function hideBreakOverlay() {
             }, 200);
         }
 
-        // E. This engine's OWN decelerate — steps smoothly all the way to 0,
+        //    This engine's OWN decelerate — steps smoothly all the way to 0,
         //    pauses on that exact frame (does not reset currentTime), then
         //    calls onComplete.
         function pomoDecelerate(onComplete) {
@@ -349,6 +349,7 @@ function advancePhase() {
                 if (shutter) shutter.classList.remove('shutter-lifted');
                 metricsCard.classList.add('metrics-halo-active');
                 console.log('Pomodoro: journey ended, train locked.');
+                setTimeout(triggerArrivalSequence, 2000);
             });
         }
 
@@ -453,11 +454,13 @@ if (video) {
             // 3. Mount Halo Glow onto Journey Metrics Box
             metricsCard.classList.add('metrics-halo-active');
             console.log("Train locked at complete stop. Shutter secured. Halo deployed.");
+            setTimeout(triggerArrivalSequence, 2000);
         }
     }, 150); // Fires every 150ms until dead stop
 } else {
                     if (shutter) shutter.classList.remove('shutter-lifted');
                     metricsCard.classList.add('metrics-halo-active');
+                    setTimeout(triggerArrivalSequence, 2000);
                 }
             }
         }, 1000);
@@ -655,5 +658,46 @@ prewarmRouteTiles(() => {
             animateArrow();
         }, 250);
     });}
+
+ /* ==========================================================================
+       🎟️ ARRIVAL SEQUENCE (shared by Timer Mode's ending AND Pomodoro's
+       finishJourney()) — dims to a soft cream, signals the soundboard to
+       fade out, packages the journey's stats, and hands off to arrival.html.
+       ========================================================================== */
+    function triggerArrivalSequence() {
+        window.journeyComplete = true; // soundboard.js polls this to fade sound out
+
+        const dimOverlay = document.createElement('div');
+        dimOverlay.style.cssText = `
+            position: fixed; inset: 0; z-index: 20000;
+            background: #f6f1e7; opacity: 0; pointer-events: none;
+            transition: opacity 1200ms ease;
+        `;
+        document.body.appendChild(dimOverlay);
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => { dimOverlay.style.opacity = '1'; });
+        });
+
+        const isPomodoroSession = localStorage.getItem('pomo_work') !== null;
+        const durationSeconds = isPomodoroSession
+            ? (parseInt(localStorage.getItem('pomo_work')) || 0) * 60 * (parseInt(localStorage.getItem('pomo_cycles')) || 0)
+            : CONFIG.targetDurationSeconds;
+
+        const journeyData = {
+            date: new Date().toISOString(),
+            mode: isPomodoroSession ? 'Pomodoro' : 'Timer',
+            durationSeconds: durationSeconds,
+            distanceKM: (typeof window.routeDistanceKM === 'number') ? window.routeDistanceKM : 0,
+            departure: localStorage.getItem('departure_platform'),
+            arrival: localStorage.getItem('arrival_platform'),
+            country: localStorage.getItem('selected_country')
+        };
+        localStorage.setItem('pendingArrivalData', JSON.stringify(journeyData));
+
+        setTimeout(() => {
+            window.location.href = 'arrival.html';
+        }, 2000);
+    }
 
 });

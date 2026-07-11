@@ -1,0 +1,19 @@
+Header type area will have the following:
+PNR (just generate a random 10 digit bold number not too bold so much it stands not just sublte)
+TRAIN no. (js makes a random 5 no. for train ex 12622 and a random train name *imp- train name remains relevant to the country picked.. dont run shinkansens in india lol*)
+DATE of journey. (fetch todays date or users countrys date wherever time zone theyre in DD-MM-YYYY)
+Class (always keep it the best in that country like in india its first class or 1AC pick whatever just pick first class it makes users feel good)
+header over
+
+info block
+ FROM: (picked by user)The originating station name and its alphanumeric station code (e.g., NEW DELHI - NDLS) this has to be accurate js will do it
+TO: The final destination station and its code (e.g., KNYAKUMARI - CAPE).
+DISTANCE: The total journey distance printed in kilometers (e.g., 2135 KM). has to be accurate
+
+footer type area:
+Financial and extra data metadata type
+TOTAL FARE: The total cost printed sequentially in both bold numbers and in words (e.g., Rs *450/- / FOUR HUNDRED AND FIFTY ONLY). again, has to be accurate, fetch it from make mytrip? idk man.. but tell me. 
+BOOKING TIMESTAMP: The exact date, time, and counter ID where the ticket was purchased (e.g., 01-06-2026 14:22  RESRV_CTR_04) (slap a random 1-5 number in counter lol)
+.................................................... (perforations)
+NOW COMES THE SIDE PART WHICH WILL BE TORN OFF:
+idk what to put here. put the pnr number again and seat number (random) and draw up a simple bar code yk :D
