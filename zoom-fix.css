@@ -1,0 +1,12 @@
+/* ==========================================================================
+   SITE-WIDE ZOOM CORRECTION
+   Recreates the ~75% zoom that Brave had silently remembered for the local
+   dev origin this whole time — so real visitors (at true 100%) see the
+   same sizing everything was actually designed against.
+   Uses the CSS `zoom` property (not `transform: scale`) specifically
+   because `transform` would break every `position: fixed` element across
+   the whole site (shutter, overlays, mole tab, hamburger panel, etc).
+   ========================================================================== */
+html {
+    zoom: 75%; /* KNOB: tweak this single number if it's not quite right */
+}
