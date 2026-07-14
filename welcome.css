@@ -47,8 +47,8 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 126vw;
+    height: 126vh;
     background-color: rgba(0, 0, 0, 0.2); /* Soft dark tint over everything */
     z-index: 100; /* Stays completely on top of all text, buttons, and clips */
     display: flex;
