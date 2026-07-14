@@ -4,9 +4,11 @@
     box-sizing: border-box;
 }
 
+
 body {
     font-family: "Cormorant Infant", serif;
-    height: 100vh; /* 100 pratishat */
+    zoom: 80%; /* site was designed at 80% browser zoom - this corrects it for true 100% visitors */
+    height: 126vh; /* 100 pratishat */
     display: flex;
     flex-direction: column;
     background-color: #dacfbe; /* cozycore */

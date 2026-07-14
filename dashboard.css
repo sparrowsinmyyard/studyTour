@@ -8,8 +8,10 @@
     padding: 0;
 }
 
+
 body {
     font-family: "Montserrat", sans-serif;
+    zoom: 100%; /* site was designed at 80% browser zoom - this corrects it for true 100% visitors */
     background-color:   #000000; /* Warm mahogany dark theme */
     height: 100vh;
     width: 100vw;
@@ -69,10 +71,10 @@ body {
 }
 
 .block-label {
-    font-size: 0.72rem;
-    font-weight: 800;
+    font-size: 0.65rem;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1.2px;
     color: rgba(255, 255, 255, 0.35);
 }
 
@@ -119,7 +121,7 @@ body {
     display: grid;
     width: 98vw;
     height: 96vh;
-    gap: 16px;
+    gap: 10px;
     padding: 0px;
     border-radius: 25px;
     grid-template-columns: 1.2fr 1fr;
@@ -151,7 +153,7 @@ body {
 
 #all-aboard-mask {
     /* ---  EDITABLE DESIGN KNOBS (CLUSTER) --- */
-    --mask-blur: 25px;                       /* Fog thickness behind the glass */
+    --mask-blur: 15px;                       /* Fog thickness behind the glass */
     --mask-bg: #1e3944;    /* Tint color and opacity */
     --mask-border: rgba(255, 255, 255, 0.1);  /* Edge highlights */
     --drop-speed: 1.2s;                       /* Speed of slide-down animation */
@@ -190,12 +192,12 @@ body {
     font-size: 1.1rem;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
     color: #ffffff;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 16px 40px;
-    border-radius: 50px;
+    padding: 10px 20px;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }

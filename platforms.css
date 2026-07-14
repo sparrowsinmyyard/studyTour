@@ -74,8 +74,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 130vw;
+    height: 130vh;
     z-index: 9999;
     pointer-events: auto;
     
@@ -203,10 +203,10 @@
    ========================================== */
 .cut-guide-wire {
     position: absolute;
-    top: 128px;
-    left: 908px; /* Coordinates perfectly map directly down your ticket's dotted ring fold line */
-    width: 26px;
-    height: 60%;
+    top: 100px;
+    left: 911px; /* Coordinates perfectly map directly down your ticket's dotted ring fold line */
+    width: 20px;
+    height: 70%;
     cursor: pointer;
     z-index: 10000;
     background: radial-gradient(circle, rgba(255, 235, 165, 0.4) 0%, rgba(255,255,255,0) 70%);
@@ -295,5 +295,3 @@
     }
 
 }
-
-

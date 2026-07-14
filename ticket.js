@@ -290,7 +290,7 @@ if (window.location.search.includes('dev')) {
                 }
                 
                 // Kill stub text instantly
-               /* if (stubText) stubText.style.display = 'none';*/
+                if (stubText) stubText.style.display = 'none';
                 
                 // Replay video in a loop
                 videoPlayer.addEventListener('ended', () => {

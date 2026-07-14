@@ -126,8 +126,8 @@ const SHUTTER_TRANSITION_MS = 2000;
                 align-items: center;
                 height: 75%;
                 position: relative;
-                top: 20px;
-                gap: 14px;
+                top: 25px;
+                gap: 1px;
                 font-family: 'Montserrat', sans-serif;">
                 <div id="pomo-session-label"
                 style="font-size: 1rem;
@@ -137,15 +137,15 @@ const SHUTTER_TRANSITION_MS = 2000;
                 color: rgba(255,255,255,0.5);">Session ${currentCycle} / ${totalCycles}</div>
 
                 <div id="pomo-clock-face"
-                style="font-size: 8rem;
+                style="font-size: 6rem;
                 font-weight: 600;
                 letter-spacing: 2px;
                 color: #ffffff;">00:00:00</div>
 
                 <div id="pomo-distance-counter"
-                style="font-size: 1.9rem;
+                style="font-size: 1.5rem;
                 font-weight: 600;
-                top: -10px;
+                top: -1px;
                 position: relative;
                 text-transform: uppercase;
                 letter-spacing: 3px; color: rgb(90, 78, 45);">Travelled: 0 KM</div>
@@ -184,12 +184,12 @@ function ensureBreakOverlay() {
                         font-weight: 800;
                         letter-spacing: 3px;
                         text-transform: uppercase;
-                        color: rgba(255,255,255,0.85);   /* <- BREAK label color */
+                        color: rgba(0, 0, 0, 0.85);   /* <- BREAK label color */
                         margin-bottom: 6px;">Break</div>
                     <div id="pomo-break-clock" style="
-                        font-size: 9rem;                 /* <- break clock size */
+                        font-size: 6rem;                 /* <- break clock size */
                         font-weight: 600;
-                        color: #ffffff;">00:00:00</div>  <!-- <- break clock color, was #170f12 (near-black, invisible) -->
+                        color: #8d8989;">00:00:00</div>  <!-- <- break clock color, was #170f12 (near-black, invisible) -->
                 </div>
             `;
             document.body.appendChild(breakOverlay);
@@ -385,13 +385,13 @@ function advancePhase() {
                 color: #fff; 
                 font-family: 'Montserrat', sans-serif;">
                 <div id="journey-clock-face" 
-                style="font-size: 8rem; 
+                style="font-size: 6.5rem; 
                 font-weight: 600; 
                 letter-spacing: 2px; 
                 color: #ffffff;">00:00:00</div>
 
                 <div id="journey-distance-counter" 
-                style="font-size: 1.9rem; 
+                style="font-size: 1.2rem; 
                 font-weight: 600; 
                 top: -10px;
                 position: relative;

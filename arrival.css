@@ -8,11 +8,13 @@
 
 body {
     font-family: "Montserrat", sans-serif;
+    zoom: 80%; /* site was designed at 80% browser zoom - this corrects it for true 100% visitors */
     background-color: #b9ae97; /* soft cream, not stark white */
 }
 
+
 .arrival-page {
-    min-height: 100vh;
+    height: 120vh;
     display: flex;
     align-items: center;
     justify-content: center;
