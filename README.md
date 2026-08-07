@@ -1,2 +1,2 @@
 # studyTour
-🧿 that pelle pelle hold a ruger🕺🕺
+🧿 that pelle pelle hold a ruger🕺🕺 yay
