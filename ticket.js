@@ -167,39 +167,50 @@ window.startTicketCeremony = function() {
     }, 1700);
 };
 
-// 3. Mouse Gesture Tracking Drag-and-Drop Tear Mechanics Engine
+// 3. Mouse + Touch Gesture Tracking Drag-and-Drop Tear Mechanics Engine
 function initializeTearMechanics() {
     const triggerWire = document.getElementById('perforation-glow-line');
     const wrapper = document.getElementById('ticket-parent-wrapper');
     const staticLayer = document.getElementById('static-ticket-view');
     const videoLayer = document.getElementById('video-ticket-view');
     const videoPlayer = document.getElementById('transition-video-player');
-    
 
     let isDragging = false;
     let startY = 0;
     const thresholdTravelDistance = 60; // Travel limit in pixels to confirm a deliberate tear action
 
-    triggerWire.addEventListener('mousedown', (e) => {
-        e.preventDefault(); // Prevents browser image dragging/text highlighting
+    // Tell touch devices that this element owns the gesture
+    // so vertical dragging is not interpreted as page scrolling.
+    triggerWire.style.touchAction = 'none';
+
+    triggerWire.addEventListener('pointerdown', (e) => {
+        e.preventDefault(); // Prevents browser image dragging/text highlighting/scroll gestures
+
         isDragging = true;
         startY = e.clientY;
+
+        // Keep receiving pointer events even if the finger/mouse
+        // moves outside the perforation line.
+        triggerWire.setPointerCapture(e.pointerId);
+
         triggerWire.classList.add('glow-extinguished'); // Immediately extinguish instructions
         document.body.style.cursor = 'pointer';
     });
 
-    window.addEventListener('mousemove', (e) => {
+    window.addEventListener('pointermove', (e) => {
         if (!isDragging) return;
+
         let currentDeltaY = e.clientY - startY;
-        
+
         // Give soft visual feedback by slightly budging the wrapper container downward along with the cursor drag
         if (currentDeltaY > 0 && currentDeltaY < thresholdTravelDistance) {
             wrapper.style.transform = `translate(-50%, calc(-50% + ${currentDeltaY * 0.2}px))`;
         }
     });
 
-    window.addEventListener('mouseup', (e) => {
+    window.addEventListener('pointerup', (e) => {
         if (!isDragging) return;
+
         isDragging = false;
         document.body.style.cursor = 'default';
 
@@ -210,24 +221,24 @@ function initializeTearMechanics() {
             // Success! Fire the immediate component swap handshake system
             triggerWire.style.display = 'none';
             staticLayer.classList.add('layer-fade-out');
-            
+
             // Kill stub text instantly
             const stubTextEl = document.getElementById('stub-ticket-text');
             if (stubTextEl) stubTextEl.style.display = 'none';
 
             videoLayer.classList.remove('video-hidden');
-            
+
             // Sync wrapper back to dead-center geometry positions for perfectly clean video alignment
             wrapper.style.transform = 'translate(-50%, -50%)';
-            
+
             videoPlayer.play();
 
             // Intercept timeline end parameters to start background darkness fading cycles
             videoPlayer.onended = () => {
                 if (window.location.search.includes('dev')) return; // Bypass redirect in Dev Mode
-                
+
                 document.getElementById('ceremony-overlay').classList.add('is-cinematic-dimming');
-                
+
                 // Final Redirect Handoff
                 setTimeout(() => {
                     window.location.href = 'dashboard.html';
@@ -239,6 +250,18 @@ function initializeTearMechanics() {
             wrapper.style.transform = 'translate(-50%, -50%)';
             triggerWire.classList.remove('glow-extinguished');
         }
+    });
+
+    // Mobile browsers can cancel a pointer gesture.
+    // Treat it like an unsuccessful tear and restore the ticket position.
+    window.addEventListener('pointercancel', () => {
+        if (!isDragging) return;
+
+        isDragging = false;
+        document.body.style.cursor = 'default';
+
+        wrapper.style.transform = 'translate(-50%, -50%)';
+        triggerWire.classList.remove('glow-extinguished');
     });
 }
 
