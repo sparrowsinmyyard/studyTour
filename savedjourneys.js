@@ -1,11 +1,11 @@
 /* ==========================================================================
-   🍔 SAVED JOURNEYS SIDE PANEL (FULLY ISOLATED)
+   SAVED JOURNEYS SIDE PANEL (FULLY ISOLATED type shit)
    Builds the hamburger icon + sliding "more stuff" panel entirely via JS —
    zero edits needed to index.html, welcome.css, or nav.js. Reuses the
    page's EXISTING #mega-modal shell (built for the about/how-to/ideas nav
    links) to display an individual saved journey's details, instead of
    building a second modal system from scratch.
-   Reads only 'savedJourneys' from localStorage — never writes to it here.
+   Reads only 'savedJourneys' from localStorage — never writes to it here :D
    ========================================================================== */
 
 (function () {
@@ -21,12 +21,12 @@
     const PANEL_SLIDE_MS     = 380;
 
     const HAMBURGER_SIZE     = '48px';
-    const HAMBURGER_COLOR    = '#ffffff';      // matches .top-nav a (sits over the video section)
+    const HAMBURGER_COLOR    = '#ffffff';     
 
     const SOCIAL_LINKS = [
-        { label: 'Instagram', url: '#' }, // <- drop your real profile URLs in here whenever ready
-        { label: 'Spotify',   url: '#' },
-        { label: 'Pinterest', url: '#' }
+        { label: 'Instagram', url: 'https://www.youtube.com/watch?v=Ox8ZLF6cGM0' }, //
+        { label: 'Spotify',   url: 'https://open.spotify.com/user/2fnv49vuuumspk54sy9km9ye9?si=70253c011ac648ef' },
+        { label: 'Pinterest', url: 'https://in.pinterest.com/missyoubetelgeuse/' }
     ];
 
     /* ========================================================================== */
