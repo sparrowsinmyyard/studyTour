@@ -88,16 +88,67 @@
                     display:flex; flex-direction:column; gap:10px; margin-top:12px;"></div>
             </div>
 
-            <div style="display:flex; flex-direction:column; gap:14px;">
-                ${SOCIAL_LINKS.map(s => `
-                    <a href="${s.url}" target="_blank" rel="noopener" style="
-                        color:${PANEL_TEXT_COLOR}; text-decoration:none; font-size:1.2rem; font-weight:600;
-                        opacity:0.75; transition: opacity 0.2s ease;"
-                       onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=0.75">
-                        ${s.label}
-                    </a>
-                `).join('')}
-            </div>
+<div>
+    <h3 style="
+        font-size:1.15rem;
+        font-weight:900;
+        letter-spacing:0.5px;
+        margin:0 0 14px;
+        color:${PANEL_ACCENT};
+    ">Links</h3>
+
+    <div style="display:flex; flex-direction:column; gap:14px;">
+        ${SOCIAL_LINKS.map(s => `
+            <a href="${s.url}" target="_blank" rel="noopener" style="
+                color:${PANEL_TEXT_COLOR};
+                text-decoration:none;
+                font-size:1.2rem;
+                font-weight:600;
+                opacity:0.75;
+                transition: opacity 0.2s ease;"
+               onmouseenter="this.style.opacity=1"
+               onmouseleave="this.style.opacity=0.75">
+                ${s.label}
+            </a>
+        `).join('')}
+    </div>
+</div>
+
+<div>
+    <h3 style="
+        font-size:1.15rem;
+        font-weight:900;
+        letter-spacing:0.5px;
+        margin:0 0 14px;
+        color:${PANEL_ACCENT};
+    ">Other Works</h3>
+
+    <div style="display:flex; flex-direction:column; gap:14px;">
+        <a href="https://sparrowsinmyyard.github.io/alltheKingsmen/" target="_blank" rel="noopener" style="
+            color:${PANEL_TEXT_COLOR};
+            text-decoration:none;
+            font-size:1.2rem;
+            font-weight:600;
+            opacity:0.75;
+            transition: opacity 0.2s ease;"
+           onmouseenter="this.style.opacity=1"
+           onmouseleave="this.style.opacity=0.75">
+            all the king's men
+        </a>
+
+        <a href="https://sparrowsinmyyard.github.io/wordDict/" target="_blank" rel="noopener" style="
+            color:${PANEL_TEXT_COLOR};
+            text-decoration:none;
+            font-size:1.2rem;
+            font-weight:600;
+            opacity:0.75;
+            transition: opacity 0.2s ease;"
+           onmouseenter="this.style.opacity=1"
+           onmouseleave="this.style.opacity=0.75">
+            слово-wordLedger
+        </a>
+    </div>
+</div>
         `;
         document.body.appendChild(panel);
 
