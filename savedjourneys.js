@@ -78,7 +78,7 @@
             <div>
                 <button id="sj-tickets-toggle" style="
                     background:none; border:none; cursor:pointer; padding:0;
-                    font-family:inherit; font-size:1.3rem; font-weight:700;
+                    font-family:inherit; font-size:1.8rem; font-weight:700;
                     color:${PANEL_ACCENT}; text-align:left;">
                     saved tickets
                 </button>
