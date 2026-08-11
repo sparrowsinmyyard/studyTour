@@ -73,7 +73,7 @@
         `;
 
         panel.innerHTML = `
-            <h2 style="font-size:1.6rem; font-weight:900; letter-spacing:1px;">more stuff</h2>
+            <h2 style="font-size:2.7rem; font-weight:900; letter-spacing:1px;">more stuff</h2>
 
             <div>
                 <button id="sj-tickets-toggle" style="
