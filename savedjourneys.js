@@ -80,7 +80,7 @@
                     background:none; border:none; cursor:pointer; padding:0;
                     font-family:inherit; font-size:1.8rem; font-weight:700;
                     color:${PANEL_ACCENT}; text-align:left;">
-                    saved tickets
+                    Saved Tickets
                 </button>
                 <div id="sj-tickets-list" style="
                     max-height:0; overflow:hidden;
