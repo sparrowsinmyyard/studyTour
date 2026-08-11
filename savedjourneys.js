@@ -90,7 +90,7 @@
 
 <div>
     <h3 style="
-        font-size:1.15rem;
+        font-size:1.8rem;
         font-weight:900;
         letter-spacing:0.5px;
         margin:0 0 14px;
@@ -103,7 +103,7 @@
                 color:${PANEL_TEXT_COLOR};
                 text-decoration:none;
                 font-size:1.2rem;
-                font-weight:600;
+                font-weight:800;
                 opacity:0.75;
                 transition: opacity 0.2s ease;"
                onmouseenter="this.style.opacity=1"
@@ -116,7 +116,7 @@
 
 <div>
     <h3 style="
-        font-size:1.15rem;
+        font-size:1.8rem;
         font-weight:900;
         letter-spacing:0.5px;
         margin:0 0 14px;
@@ -128,7 +128,7 @@
             color:${PANEL_TEXT_COLOR};
             text-decoration:none;
             font-size:1.2rem;
-            font-weight:600;
+            font-weight:800;
             opacity:0.75;
             transition: opacity 0.2s ease;"
            onmouseenter="this.style.opacity=1"
