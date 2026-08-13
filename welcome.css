@@ -124,6 +124,14 @@ body {
     padding-right: 15px;
 }
 
+/* Make the image span 100% of the viewport width */
+.top-hero-photo {
+    width: 100vw !important;  /* Forces full screen width */
+    height: 45vh !important;  /* Sets height to top 45% of screen */
+    object-fit: cover !important; /* Crops cleanly so it fills edge-to-edge */
+    display: block;
+}
+
 /* Gives breathing space between separate paragraph blocks in the popup */
 .modal-body p {
     margin-bottom: 10px; /* 👈 Increase this number for even more space! */
